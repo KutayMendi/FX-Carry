@@ -24,6 +24,7 @@ Results
 - I found that adjusting to a longer vol window makes the leveraging smoother and makes the results look better in the backtest, but long vol windows could backfire in a market crash event like 2008
 - By cumulating transcation costs, you can see how even small ones can degrade sharpe
 - I also found that top_n = bottom_n = 2 is a sweet spot no matter what the other parameters are.
+- Increasing target vol boosts our leverage, so both returns and drawdown gets magnified. However, sharpe doesnt chane much as this is a classic risk/return trade off
 - I attached a couple graphics and metrics associated with different combinations of parameter values in this repo
 
 
