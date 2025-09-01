@@ -1,7 +1,33 @@
 Fx-Carry Project
 ----
-Data
-- data/fx.csv: the daily close levels where columns are currencies quoted as xxxUSD
-- data/rates.csv: monthly policy/short rates, with columns as currencies
+This repo contains my attempt at coding up a simple FX carry strategy with volatility targeting. The idea is pretty classic: rank currencies by interest rate differentials, go long the high yielders, short the low yielders, and size the portfolio so that overall risk stays stable.
 
-Just a quick note: both files need to have a date column in the format YYYY-MM-DD
+Data
+----
+- data/fred/ : the daily FX close levels from Federal Reserve Economic Data from Federal Reserve Bank of St Louis
+- data/bis/ : monthly policy/short rates from Bank of International Settlements
+
+Method
+----
+1) First I gather the FX levels and policy rates, and align them onto a table with a daily index
+2) Then I calculate carry, which is simply base-quote differential for any currency pair XXXYYY
+3) At the start of any given month (I use start of month only because the rate data is monthly, so no need to calculate differential for every day) I rank pairs by their differential: top_n = longs, bottom_n = short
+4) I forward fill these weights through the month, then apply simple vol targetting:
+   - Estimate realised vol over a rolling window,
+   - then scale portfolio leverage up/down to hit the targel annual vol
+6) Here I account for transcation costs, then calculate metrics such as pnl, equity curve, sharpe, mdd etc
+
+Results
+----
+- The code works well (weights, vol targetting, turnover, etc) but the strategies performance since 2022 was poor
+- This more so reflects the market reality: carry became unviable when USD rates inceased, while safer currencies rallied in a risk-off regime.
+- I found that adjusting to a longer vol window makes the leveraging smoother and makes the results look better in the backtest, but long vol windows could backfire in a market crash event like 2008
+- By cumulating transcation costs, you can see how even small ones can degrade sharpe
+- I also found that top_n = bottom_n = 2 is a sweet spot no matter what the other parameters are.
+- I attached a couple graphics and metrics associated with different combinations of parameter values in this repo
+
+
+
+
+
+
