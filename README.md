@@ -25,7 +25,7 @@ Results
 - By cumulating transcation costs, you can see how even small ones can degrade sharpe
 - I also found that top_n = bottom_n = 2 is a sweet spot no matter what the other parameters are.
 - Increasing target vol boosts our leverage, so both returns and drawdown gets magnified. However, sharpe doesnt chane much as this is a classic risk/return trade off
-- I attached a couple graphics and metrics associated with different combinations of parameter values in this repo
+- I attached a couple graphics and metrics associated with different combinations of parameter values in this repo under data/results/
 
 Mistakes/Edits
 ----
