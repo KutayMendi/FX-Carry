@@ -27,7 +27,7 @@ Results
 - Increasing target vol boosts our leverage, so both returns and drawdown gets magnified. However, sharpe doesnt chane much as this is a classic risk/return trade off
 - I attached a couple graphics and metrics associated with different combinations of parameter values in this repo
 
-Bloopers
+Mistakes/Edits
 ----
 In the data/results/folder, along with a couple graphics for various parameter values, is two files called mistake.png and mistake2.png. 
 - For mistake.png, it is quite obvious an error in my logic caused the equity to constant remain at 1.0, only dropping discrete chunks becuase of lossed due to tiny transcation costs.
